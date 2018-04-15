@@ -1,0 +1,33 @@
+<%- partial('partial/header') %>
+<div class="container">
+ <div class="row">
+  <% site.categories.forEach(function(category){%>
+	   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				  <h3 class="panel-title"><%- category.name %></h3>
+				</div>
+				<% site.posts.forEach(function(post){ %>
+					<% post.categories.forEach(function(postcategory){ %>
+						<% if(postcategory.name == category.name){ %>
+							<div class="panel-body"> 
+								<a href="<%- post.path %>"><%- post.title %></a>
+							</div>
+						<% } %>
+					<% }) %>
+			   <% }) %>
+		   </div>
+	   </div>
+   <% }) %>
+ </div>
+</div>
+<hr>
+<footer class="text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p>Copyright @ 2017 CODEXE. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>

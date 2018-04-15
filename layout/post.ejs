@@ -1,0 +1,29 @@
+<div id="book">
+  <div id="summary-control">
+	<div id="collapse" onclick="collapseNav()">&#10094;</div>
+	<div id="expand" onclick="expandNav()">&#10095;</div>
+  </div>
+  <!--chapter list--> 
+  <div id="book-summary">
+  <a id="back-home" href="/"><h1></h1></a>
+	<ul class="chapter-list">
+	</ul>
+  </div>
+  
+  <!--book title + book content-->
+  <div id="book-container">
+	<div id="book-body">
+	  <div id="book-content">
+		<div id="book-title">
+		  <h1><%- page.title %></h1>
+		</div>
+		<div id="article-content">
+			<p><%- page.content %></p>
+		</div>
+	  </div>
+	  <div id="top-arrow" title="TOP">&#10094;</div>
+	  <a href="" class="navigation navigator-prev" title="">&#10094;</a>
+	  <a href="" class="navigation navigator-next" title="">&#10095;</a>  
+	</div>
+  </div>
+</div>
