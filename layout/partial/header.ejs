@@ -7,16 +7,20 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="defaultNavbar1">
       <ul class="nav navbar-nav">
-		 <% site.categories.forEach(function(category){%>
-			<% site.posts.forEach(function(post){ %>
-				<% post.categories.forEach(function(postcategory){ %>
-					<% if(postcategory.name == category.name){ %>
+		<% for(var i=0; i<site.categories.length; i++){ %>
+			<% done = false %>
+			<% category = site.categories.toArray()[i] %>
+			<% for(var j=0; j<site.posts.length && !done; j++){ %>
+				<% post = site.posts.toArray()[j] %>
+				<% for(var m=0; m<post.categories.length; m++){ %>
+					<% if(post.categories.toArray()[m].name == category.name){ %>
 						<li><a href="<%- post.path %>"><%- category.name %></a></li>
-						<% return %>
+						<% done = true %>
+						<% break %>
 					<% } %>
-				<% )} %>	
-		    <% }) %>
-	    <% }) %>
+				<% } %>
+			<% } %>
+		 <% } %>
       </ul>
     </div>
     <!-- /.navbar-collapse -->
