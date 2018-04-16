@@ -119,6 +119,7 @@ $(document).ready(function(){
       e.preventDefault();//dont add for ajax load
     });*/
 	//summary list
+/*	
 	$(".section").children("a").click(function(){
       if(!$(this).parent().hasClass('active')){
 		$("#book-summary li.active").removeClass('active'); 
@@ -133,4 +134,5 @@ $(document).ready(function(){
       }
       return false;//dont add for ajax load
     });
+	*/
 });

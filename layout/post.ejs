@@ -5,8 +5,23 @@
   </div>
   <!--chapter list--> 
   <div id="book-summary">
-  <a id="back-home" href="/"><h1></h1></a>
+    <% mainCategory = page.categories.toArray()[0] %>
+	<a id="back-home" href="/"><h1><%- mainCategory.name %></h1></a>
 	<ul class="chapter-list">
+		<li class="chapter">
+			<a>
+				<strong></strong>
+			</a>
+		</li> 
+		<ul class="section-list">
+			<% site.posts.forEach(function(post){ %>
+				<% post.categories.forEach(function(category){ %>
+					<% if(category.name == mainCategory.name){ %>
+						<li class="section"><a href="/<%- post.path %>"><%- post.title %></a></li>
+					<% } %>
+				<% }) %>
+			<% }) %>
+		</ul>
 	</ul>
   </div>
   
