@@ -3,25 +3,41 @@
 	<div id="collapse" onclick="collapseNav()">&#10094;</div>
 	<div id="expand" onclick="expandNav()">&#10095;</div>
   </div>
-  <!--chapter list--> 
+  
   <div id="book-summary">
+	<!-- get the chapter set and post set -->
+	<!--chapter set--> 
     <% mainCategory = page.categories.toArray()[0] %>
 	<a id="back-home" href="/"><h1><%- mainCategory.name %></h1></a>
+	<!-- get all chapters in this category -->
+	<% chapters = new Set(); %>
+	<% posts = new Set(); %>
+	<% site.posts.forEach(function(post){ %>
+		<% post.categories.forEach(function(category){ %>
+			<% if(category.name == mainCategory.name){ %>
+				 <% chapters.add(post.chapter) %>
+				 <% posts.add(post) %>
+			<% } %>
+		<% }) %>
+	<% }) %>
+	
 	<ul class="chapter-list">
 		<li class="chapter">
-			<a>
-				<strong></strong>
-			</a>
-		</li> 
-		<ul class="section-list">
-			<% site.posts.forEach(function(post){ %>
-				<% post.categories.forEach(function(category){ %>
-					<% if(category.name == mainCategory.name){ %>
-						<li class="section"><a href="/<%- post.path %>"><%- post.title %></a></li>
-					<% } %>
-				<% }) %>
+			<% chapters.forEach(function(chapter){ %>
+				<a>
+					<strong><%- chapter %></strong>
+				</a>
+				<!-- add section(post) -->
+				<ul class="section-list">
+					<% posts.forEach(function(post){ %>
+						<% if(post.chapter == chapter){ %>
+							<li class="section"><a href="/<%- post.path %>"><%- post.title %></a></li>
+						<% } %>	
+					<% }) %>
+				</ul>
 			<% }) %>
-		</ul>
+		</li> 
+		
 	</ul>
   </div>
   
