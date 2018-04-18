@@ -1,25 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-	<meta charset="utf-8">
-	<meta name="description" content="D3 Scale Positive Negative Area Chart With Axis">
-	<meta name="keywords" content="D3 Scale Positive Negative Area Chart With Axis">
-	<meta name="viewport" content="width=device-width">
-    <title>D3 Scale Positive Negative Area Chart With Axis</title>
-    <link href="/styles/codexe-css.css" rel="stylesheet" type="text/css"/>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
-  </head>
+<%- partial('partial/head') %>
   <body>
-    <%- body %>
-    <!--javascript section-->
-    <script src="/js/codexe-js.js"></script>
+	<%- body %>
+  <!--javascript section-->
+  <!--  <script src="/js/codexe-js.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <%- js('js/codexe-js.js') %>
   </body>
 </html>
