@@ -31,7 +31,7 @@
 				<ul class="section-list">
 					<% posts.forEach(function(post){ %>
 						<% if(post.chapter == chapter){ %>
-							<li class="section"><a href="/<%- post.path %>"><%- post.title %></a></li>
+							<li class="section <% if(page.path==post.path){%> active <%} %>"><a href="/<%- post.path %>"><%- post.title %></a></li>
 						<% } %>	
 					<% }) %>
 				</ul>
