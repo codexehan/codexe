@@ -46,7 +46,7 @@ function initClickEvent(){
 		$("#book-content").scrollTop(0);
 	});
 	
-    $(".navigation").click(function(){
+ /*   $(".navigation").click(function(){
       var addr=$(this).attr("href");
 	  
 	  var $liArray = $(".section");
@@ -67,7 +67,7 @@ function initClickEvent(){
 	  }
 	  ajaxLoadBook(addr,index);
       return false;//or e.preventDefault()
-    });	
+    });	*/
 }
 //index is the index of addr page
 function ajaxLoadBook(addr,index){

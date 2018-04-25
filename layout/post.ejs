@@ -12,11 +12,32 @@
 	<!-- get all chapters in this category -->
 	<% chapters = new Set(); %>
 	<% posts = new Set(); %>
+	<% 
+	   var prePost = null;
+	   var nxtPost = null;
+	   var isPrev = false;
+	   var isNext = false;
+	%>
 	<% site.posts.forEach(function(post){ %>
 		<% post.categories.forEach(function(category){ %>
 			<% if(category.name == mainCategory.name){ %>
 				 <% chapters.add(post.chapter) %>
 				 <% posts.add(post) %>
+				 <!-- left and right navigation-->
+				 <% 
+					if(isNext){
+						nxtPost = post;
+						isNext = false;
+					} 
+					if(page.path == post.path){
+						isPrev = true;
+						isNext = true;
+					} 
+					if(!isPrev){
+						prePost = post;
+					}
+										 
+				 %>
 			<% } %>
 		<% }) %>
 	<% }) %>
@@ -53,8 +74,12 @@
 		</div>
 	  </div>
 	  <div id="top-arrow" title="TOP">&#10094;</div>
-	  <a href="" class="navigation navigator-prev" title="">&#10094;</a>
-	  <a href="" class="navigation navigator-next" title="">&#10095;</a>  
+	  <% if(prePost != null){ %>
+		<a href="/<%- prePost.path %>" class="navigation navigator-prev" title="<%- prePost.name %>">&#10094;</a>
+	  <% } %>
+	  <% if(nxtPost != null){ %>
+		 <a href="/<%- nxtPost.path %>" class="navigation navigator-next" title="<%- nxtPost.name %>">&#10095;</a>  
+	  <% } %>
 	</div>
   </div>
 </div>
