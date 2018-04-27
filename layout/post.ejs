@@ -8,14 +8,19 @@
 	<!-- get the chapter set and post set -->
 	<!--chapter set--> 
     <% 
+		var isDefault = false
 		mainCategory = page.categories.toArray()[0] 
 		if(!mainCategory){
 			mainCategory = config.default_category
+			isDefault = true
+		}
+		else{
+			mainCategory = mainCategory.name
 		}
 	%>
 	
 	
-	<a id="back-home" href="/"><h1><%- mainCategory.name %></h1></a>
+	<a id="back-home" href="/"><h1><%- mainCategory %></h1></a>
 	<!-- get all chapters in this category -->
 	<% chapters = new Set(); %>
 	<% posts = new Set(); %>
@@ -25,13 +30,12 @@
 	   var isPrev = false;
 	   var isNext = false;
 	%>
-	<% site.posts.forEach(function(post){ %>
-		<% post.categories.forEach(function(category){ %>
-			<% if(category.name == mainCategory.name){ %>
-				 <% chapters.add(post.chapter) %>
-				 <% posts.add(post) %>
-				 <!-- left and right navigation-->
-				 <% 
+	<%
+		if(isDefault){
+			site.posts.forEach(function(post){
+				if(post.categories.length == 0){
+					chapters.add(post.chapter)
+					posts.add(post)
 					if(isNext){
 						nxtPost = post;
 						isNext = false;
@@ -43,11 +47,31 @@
 					if(!isPrev){
 						prePost = post;
 					}
-										 
-				 %>
-			<% } %>
-		<% }) %>
-	<% }) %>
+				}
+			})
+		}
+		else{
+			site.posts.forEach(function(post){
+				post.categories.forEach(function(category){
+					if(category.name == mainCategory){
+						chapters.add(post.chapter)
+						posts.add(post)
+						if(isNext){
+							nxtPost = post;
+							isNext = false;
+						} 
+						if(page.path == post.path){
+							isPrev = true;
+							isNext = true;
+						} 
+						if(!isPrev){
+							prePost = post;
+						}
+					}
+				})
+			})
+		}
+	%>
 	
 	<ul class="chapter-list">
 		<li class="chapter">
