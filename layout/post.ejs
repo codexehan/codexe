@@ -7,7 +7,14 @@
   <div id="book-summary">
 	<!-- get the chapter set and post set -->
 	<!--chapter set--> 
-    <% mainCategory = page.categories.toArray()[0] %>
+    <% 
+		mainCategory = page.categories.toArray()[0] 
+		if(!mainCategory){
+			mainCategory = config.default_category
+		}
+	%>
+	
+	
 	<a id="back-home" href="/"><h1><%- mainCategory.name %></h1></a>
 	<!-- get all chapters in this category -->
 	<% chapters = new Set(); %>

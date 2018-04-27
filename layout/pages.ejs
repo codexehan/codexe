@@ -1,6 +1,7 @@
 <%- partial('partial/header') %>
 <div class="container">
  <div class="row">
+	<% var noCategories = false %>
 	 <% if(site.categories.length > 1){ %>
 		<% site.categories.forEach(function(category){%>
 		   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -9,6 +10,11 @@
 					  <h3 class="panel-title"><%- category.name %></h3>
 					</div>
 					<% site.posts.forEach(function(post){ %>
+						<%
+							 if(post.categories.length == 0){
+								noCategories = true
+							 }
+						%>
 						<% post.categories.forEach(function(postcategory){ %>
 							<% if(postcategory.name == category.name){ %>
 								<div class="panel-body"> 
@@ -20,6 +26,23 @@
 			   </div>
 		   </div>
 	   <% }) %>
+	   <!--add noncategoreis posts-->
+	   <% if(noCategories){%>
+		   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+					  <h3 class="panel-title">Articles</h3>
+					</div>
+					<% site.posts.forEach(function(post){ %>
+						<% if(post.categories.length == 0){ %>
+							<div class="panel-body"> 
+								<a href="<%- post.path %>"><%- post.title %></a>
+							</div>
+						<% } %>
+				   <% }) %>
+			   </div>
+		   </div>
+	   <% } %>
 	 <% } else{ %>
 		<% var name = "Articles" %>
 		<% if(site.categories.length == 1){ %>
